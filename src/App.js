@@ -1,40 +1,44 @@
 import React from 'react';
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
+  Heading,
   Grid,
   theme,
+  Input,
+  FormControl,
+  Box
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
 
 function App() {
+  const [listOfTask, setTask] = React.useState([]);
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setTask([...listOfTask, event.target.elements.taskInput.value]);
+    event.target.elements.taskInput.value = '';
+  }
+
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
+      <Grid>
+        <ColorModeSwitcher justifySelf="flex-end" />
+        <Heading m="auto" size="lg">
+          To-Do App 💙
+        </Heading>
+        <Box m="auto" width="50%">
+          <form onSubmit={handleSubmit}>
+            <FormControl id="task" isRequired>
+              <Input
+                id="taskInput"
+                size="md"
+                variant="flushed"
+                placeholder="Add task, press Enter to save."
+              />
+            </FormControl>
+          </form>
+        </Box>
+      </Grid>
     </ChakraProvider>
   );
 }
