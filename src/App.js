@@ -26,6 +26,7 @@ function App() {
         <Heading m="auto" size="lg">
           To-Do App 💙
         </Heading>
+        {/* Mover a un componente el Box */}
         <Box m="auto" width="50%">
           <form onSubmit={handleSubmit}>
             <FormControl id="task" isRequired>
