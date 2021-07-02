@@ -7,8 +7,7 @@ import {
   Checkbox,
   Divider,
   Stack,
-  theme,
-  Box,
+  theme
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import TaskInput from './components/TaskInput';
