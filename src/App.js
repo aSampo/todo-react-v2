@@ -1,14 +1,7 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Heading,
-  Grid,
-  theme,
-  Input,
-  FormControl,
-  Box
-} from '@chakra-ui/react';
+import { ChakraProvider, Heading, Grid, theme } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
+import TaskInput from './components/TaskInput';
 
 function App() {
   const [listOfTask, setTask] = React.useState([]);
@@ -26,19 +19,7 @@ function App() {
         <Heading m="auto" size="lg">
           To-Do App 💙
         </Heading>
-        {/* Mover a un componente el Box */}
-        <Box m="auto" width="50%">
-          <form onSubmit={handleSubmit}>
-            <FormControl id="task" isRequired>
-              <Input
-                id="taskInput"
-                size="md"
-                variant="flushed"
-                placeholder="Add task, press Enter to save."
-              />
-            </FormControl>
-          </form>
-        </Box>
+        <TaskInput handleSubmit={handleSubmit}/>
       </Grid>
     </ChakraProvider>
   );
