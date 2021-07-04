@@ -1,5 +1,10 @@
 import React from 'react';
-import { ChakraProvider, Heading, Grid, theme } from '@chakra-ui/react';
+import {
+  ChakraProvider,
+  Heading,
+  Grid,
+  theme,
+} from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import TaskInput from './components/TaskInput';
 import TaskCard from './components/TaskCard';
@@ -35,7 +40,7 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
-      <Grid>
+      <Grid m="auto" width="50%">
         <ColorModeSwitcher justifySelf="flex-end" />
         <Heading m="auto" size="lg">
           To-Do App 💙
@@ -44,12 +49,12 @@ function App() {
         {listOfTask
           .filter(e => !e.checked)
           .map(item => (
-            <TaskCard task={item} onCheckChange={onCheckChange} />
+            <TaskCard key={item.id} task={item} onCheckChange={onCheckChange} />
           ))}
         {listOfTask
           .filter(e => e.checked)
           .map(item => (
-            <TaskCard task={item} onCheckChange={onCheckChange} />
+            <TaskCard key={item.id} task={item} onCheckChange={onCheckChange} />
           ))}
       </Grid>
     </ChakraProvider>

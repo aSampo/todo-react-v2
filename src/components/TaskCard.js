@@ -2,7 +2,7 @@ import { Stack, Text, Checkbox } from '@chakra-ui/react';
 
 function TaskCard({ task, onCheckChange }) {
   return (
-    <Stack m="auto" width="50%" direction="row" key={task.id}>
+    <Stack direction="row" >
       <Checkbox
         onChange={e => onCheckChange(task.id, e)}
         isChecked={task.checked}

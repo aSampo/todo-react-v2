@@ -2,11 +2,11 @@ import { Input, FormControl, Box } from '@chakra-ui/react';
 
 function TaskInput({ handleSubmit }) {
   return (
-    <Box m="auto" width="50%">
+    <Box >
       <form onSubmit={handleSubmit}>
         <FormControl id="task" isRequired>
           <Input
-            autocomplete="off"
+            autoComplete="off"
             id="taskInput"
             size="md"
             variant="flushed"
