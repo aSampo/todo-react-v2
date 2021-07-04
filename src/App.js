@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Heading,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
+import { ChakraProvider, Heading, Grid, theme } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import TaskInput from './components/TaskInput';
 import TaskCard from './components/TaskCard';
@@ -14,10 +9,11 @@ function App() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setTasks([
-      ...listOfTask,
-      generateTask(event.target.elements.taskInput.value),
-    ]);
+    setTasks(
+      [...listOfTask, generateTask(event.target.elements.taskInput.value)].sort(
+        (y, x) => (x.checked === y.checked ? 0 : x.checked ? -1 : 1)
+      )
+    );
     event.target.elements.taskInput.value = '';
   }
 
@@ -27,6 +23,7 @@ function App() {
     let item = { ...items[index] };
     item.checked = event.target.checked;
     items[index] = item;
+    items.sort((y, x) => (x.checked === y.checked ? 0 : x.checked ? -1 : 1));
     setTasks(items);
   }
 
@@ -46,16 +43,9 @@ function App() {
           To-Do App 💙
         </Heading>
         <TaskInput handleSubmit={handleSubmit} />
-        {listOfTask
-          .filter(e => !e.checked)
-          .map(item => (
-            <TaskCard key={item.id} task={item} onCheckChange={onCheckChange} />
-          ))}
-        {listOfTask
-          .filter(e => e.checked)
-          .map(item => (
-            <TaskCard key={item.id} task={item} onCheckChange={onCheckChange} />
-          ))}
+        {listOfTask.map(item => (
+          <TaskCard key={item.id} task={item} onCheckChange={onCheckChange} />
+        ))}
       </Grid>
     </ChakraProvider>
   );
