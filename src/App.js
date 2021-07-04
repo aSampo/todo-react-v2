@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Heading,
-  Grid,
-  Text,
-  Checkbox,
-  Divider,
-  Stack,
-  theme
-} from '@chakra-ui/react';
+import { ChakraProvider, Heading, Grid, theme } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import TaskInput from './components/TaskInput';
+import TaskCard from './components/TaskCard';
 
 function App() {
   const [listOfTask, setTasks] = React.useState([]);
@@ -52,25 +44,12 @@ function App() {
         {listOfTask
           .filter(e => !e.checked)
           .map(item => (
-            <Stack m="auto" direction="row" key={item.id}>
-              <Text fontSize="15px">{item.description}</Text>
-              <Checkbox
-                onChange={e => onCheckChange(item.id, e)}
-                isChecked={item.checked}
-              />
-            </Stack>
+            <TaskCard task={item} onCheckChange={onCheckChange} />
           ))}
-        {listOfTask.filter(e => e.checked).length ? <Divider m="auto" /> : null}
         {listOfTask
           .filter(e => e.checked)
           .map(item => (
-            <Stack m="auto" direction="row" key={item.id}>
-              <Text fontSize="15px" as="s">{item.description}</Text>
-              <Checkbox
-                onChange={e => onCheckChange(item.id, e)}
-                isChecked={item.checked}
-              />
-            </Stack>
+            <TaskCard task={item} onCheckChange={onCheckChange} />
           ))}
       </Grid>
     </ChakraProvider>

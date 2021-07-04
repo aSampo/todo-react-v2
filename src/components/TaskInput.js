@@ -6,6 +6,7 @@ function TaskInput({ handleSubmit }) {
       <form onSubmit={handleSubmit}>
         <FormControl id="task" isRequired>
           <Input
+            autocomplete="off"
             id="taskInput"
             size="md"
             variant="flushed"
