@@ -37,7 +37,7 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
-      <Grid m="auto" width="50%">
+      <Grid m="auto" maxWidth="600px" width="70%">
         <ColorModeSwitcher justifySelf="flex-end" />
         <Heading m="auto" size="lg">
           To-Do App 💙
