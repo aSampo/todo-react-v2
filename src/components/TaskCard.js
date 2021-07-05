@@ -16,7 +16,7 @@ function TaskCard({ task, onCheckChange, onDeleteTask }) {
         onChange={e => onCheckChange(task.id, e)}
         isChecked={task.checked}
       />
-      <Text fontSize="15px">{task.description}</Text>
+      {task.checked ? <Text as="del" fontSize="15px">{task.description}</Text> : <Text fontSize="15px">{task.description}</Text> }
       <Spacer />
       <Box>
         <Button
