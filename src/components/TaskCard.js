@@ -1,13 +1,32 @@
-import { Stack, Text, Checkbox } from '@chakra-ui/react';
-
-function TaskCard({ task, onCheckChange }) {
+import {
+  Stack,
+  Text,
+  Checkbox,
+  Button,
+  Icon,
+  Box,
+  Spacer,
+} from '@chakra-ui/react';
+import { AiFillDelete } from 'react-icons/ai';
+function TaskCard({ task, onCheckChange, onDeleteTask }) {
   return (
-    <Stack direction="row" >
+    <Stack direction="row">
       <Checkbox
+        colorScheme="teal"
         onChange={e => onCheckChange(task.id, e)}
         isChecked={task.checked}
       />
       <Text fontSize="15px">{task.description}</Text>
+      <Spacer />
+      <Box>
+        <Button
+          onClick={e => onDeleteTask(e, task.id)}
+          colorScheme="red"
+          variant="link"
+        >
+          <Icon as={AiFillDelete} />
+        </Button>
+      </Box>
     </Stack>
   );
 }
